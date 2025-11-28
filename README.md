@@ -43,4 +43,90 @@ graph TD
     G -->|Context + Prompt| H[🤖 Google Gemini 2.5 Flash]
     H --> I[✅ Evidence-Backed Answer]
 ```
+## 🛠️ How It Works
+
+### **1. Document Preparation**
+- Clean transcription text  
+- Normalize formatting  
+- Chunk using `RecursiveCharacterTextSplitter`
+
+### **2. Embedding Generation**
+- MiniLM encodes chunks into dense semantic vectors
+
+### **3. FAISS Vector Store**
+- Stores embeddings  
+- Enables high-speed nearest-neighbor retrieval
+
+### **4. RAG Retrieval Flow**
+1. User enters query  
+2. Query is converted into an embedding  
+3. FAISS retrieves the top-k relevant chunks  
+4. Context block is assembled  
+5. Gemini receives:  
+   - Retrieved context  
+   - Strict grounding instructions  
+   - User question  
+6. Gemini outputs a **grounded, safe answer**  
+7. UI displays the answer with sources
+
+---
+
+## 📊 Evaluation
+
+The system was evaluated on **30 diverse medical questions**, including:
+- Pneumonia  
+- COPD  
+- Stroke  
+- Sepsis  
+- Myocardial infarction  
+- Acute renal failure  
+- GI bleeding  
+- Post-operative complications  
+
+### **Evaluation Focus**
+- Retrieval relevance  
+- Groundedness  
+- Refusal behavior when lacking evidence  
+- Source diversity  
+
+### **Results**
+- Very strong retrieval performance  
+- Minimal hallucination  
+- Consistent source transparency  
+
+Full results available in:
+
+`rag_eval_results.csv`
+
+---
+
+## 🚨 Disclaimer
+
+This system is intended **only** for:
+- Research  
+- Education  
+- Demonstration  
+
+It is **NOT** a medical device.  
+Do **NOT** use for diagnosis, treatment, or clinical decision-making.
+
+---
+
+## 👨‍💻 Technologies Used
+
+- Python 3  
+- Streamlit  
+- Sentence Transformers  
+- FAISS  
+- LangChain Community  
+- Google Gemini 2.5 Flash  
+- Pandas  
+- NumPy  
+- Kaggle Notebook Environment  
+
+---
+
+## 📬 Contact
+
+Feel free to open an issue for upgrades, contributions, or discussion.
 
