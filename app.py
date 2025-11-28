@@ -25,7 +25,7 @@ def load_embeddings():
 
 
 @st.cache_resource(show_spinner="Loading FAISS index...")
-def load_vectorstore(embeddings):
+def load_vectorstore(_embeddings):
     """
     Load the pre-built FAISS index from local directory.
     Make sure 'faiss_medical_index' is present next to app.py.
@@ -33,10 +33,12 @@ def load_vectorstore(embeddings):
     faiss_dir = "faiss_medical_index"
     vectorstore = FAISS.load_local(
         faiss_dir,
-        embeddings=embeddings,
+        embeddings=_embeddings,
         allow_dangerous_deserialization=True,
     )
     return vectorstore
+
+
 
 
 @st.cache_resource(show_spinner="Connecting to Gemini...")
