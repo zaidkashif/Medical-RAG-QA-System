@@ -2,9 +2,10 @@
 Retrieval-Augmented Generation over Medical Transcription Reports
 🚀 Overview
 
-The Medical RAG QA System is a retrieval-augmented question-answering application designed to provide evidence-grounded responses from a collection of 5,000+ real-world medical transcription reports.
+The Medical RAG QA System is a retrieval-augmented question-answering application built over a corpus of 5,000+ real-world medical transcription reports.
+It generates evidence-grounded answers using retrieved context only — ensuring transparency and reducing hallucinations.
 
-It combines powerful modern components:
+Technologies Used
 
 MiniLM Sentence Embeddings
 
@@ -12,109 +13,105 @@ FAISS Similarity Search
 
 Google Gemini 2.5 Flash
 
-Streamlit Web Interface
-
 LangChain Community Components
 
-Together, these create a lightweight yet robust RAG pipeline that enables users to explore medical narratives in a controlled, transparent, and explainable manner.
+Streamlit Web Interface
 
-This project is not intended to replace medical expertise—it is a demonstration of how retrieval-enhanced LLMs can support knowledge exploration responsibly.
+This project demonstrates how modern retrieval-enhanced LLMs can surface insights from domain-specific datasets in a safe, explainable, and responsible manner.
 
 🧠 Key Features
-1. Retrieval-Augmented Generation (RAG)
+🔹 Retrieval-Augmented Generation (RAG)
 
-Answers are grounded in retrieved evidence, reducing hallucinations.
+All answers are backed by retrieved evidence — not free-form hallucination.
 
-2. High-Performance Embeddings
+🔹 High-Performance Embeddings
 
-Uses sentence-transformers/all-MiniLM-L6-v2 for efficient 384-dimensional embeddings.
+Uses sentence-transformers/all-MiniLM-L6-v2 for lightweight and accurate semantic embeddings.
 
-3. FAISS Vector Indexing
+🔹 FAISS Vector Indexing
 
-Provides fast similarity search across thousands of medical chunks.
+Enables high-speed nearest-neighbor search over thousands of medical chunks.
 
-4. Gemini-Powered Answers
+🔹 Gemini-Powered Reasoning
 
-Gemini 2.5 Flash generates explanations constrained by retrieved context.
+Gemini 2.5 Flash provides grounded and structured responses.
 
-5. Interactive Streamlit Web App
+🔹 Interactive Web App
 
-User-friendly interface with clean UX and live querying.
+User-friendly Streamlit UI with clear source attribution.
 
-6. Transparent Source Attribution
+🔹 Transparent Evidence
 
-Every answer cites the exact medical chunks used.
+Every answer includes its source chunks and metadata.
 
 🔍 System Architecture
-          ┌────────────────────────────────────────┐
-          │          Medical Documents (CSV)        │
-          └────────────────────────────────────────┘
-                           │ Cleaning + Preprocessing
-                           ▼
-               ┌────────────────────────┐
-               │  MiniLM Embeddings     │
-               └────────────────────────┘
-                           │
-                           ▼
-               ┌────────────────────────┐
-               │      FAISS Index        │
-               └────────────────────────┘
-                           │
-                           ▼  Top-k relevant chunks
-               ┌────────────────────────┐
-               │      Gemini LLM        │
-               └────────────────────────┘
-                           │
-                           ▼
-              ┌────────────────────────────┐
-              │   Evidence-Backed Answer    │
-              └────────────────────────────┘
+┌────────────────────────────────────────┐
+│          Medical Documents (CSV)        │
+└────────────────────────────────────────┘
+                 │  Cleaning + Preprocessing
+                 ▼
+      ┌────────────────────────┐
+      │  MiniLM Embeddings     │
+      └────────────────────────┘
+                 │
+                 ▼
+      ┌────────────────────────┐
+      │      FAISS Index        │
+      └────────────────────────┘
+                 │
+                 ▼  Top-k retrieved chunks
+      ┌────────────────────────┐
+      │      Gemini LLM        │
+      └────────────────────────┘
+                 │
+                 ▼
+      ┌────────────────────────────┐
+      │   Evidence-Backed Answer    │
+      └────────────────────────────┘
 
 🌐 Live Demo
 
 Streamlit App:
-https://medical-rag-app-systemgit-asvs2mfkqpo9vp6yuguptq.streamlit.app/
+👉 https://medical-rag-app-systemgit-asvs2mfkqpo9vp6yuguptq.streamlit.app/
 
 🛠️ How It Works (Deep Dive)
 1. Document Preparation
 
-Medical transcription reports loaded from dataset
+Loaded 5,000+ medical reports
 
-Text cleaning and normalization
+Cleaned and normalized text
 
-Chunking using RecursiveCharacterTextSplitter
+Chunked using RecursiveCharacterTextSplitter
 
-2. Embeddings
+2. Embedding
 
-MiniLM (all-MiniLM-L6-v2)
+MiniLM (all-MiniLM-L6-v2) generates 384-dimensional embeddings
 
-384-dimensional dense vectors
+Highly efficient for semantic similarity tasks
 
-Optimized for semantic similarity tasks
+3. Vector Store
 
-3. Vector Store (FAISS)
+FAISS stores embeddings in a compressed, searchable index
 
-Stores embeddings in an efficient index
+Enables fast similarity search for every query
 
-Enables instant retrieval of nearest neighbors
+4. Retrieval Pipeline
 
-4. RAG Retrieval Pipeline
+For each user question:
 
-For every user question:
+Convert question → vector
 
-Encode the query into an embedding
+Retrieve top-k similar chunks from FAISS
 
-Retrieve top-k relevant chunks
-
-Build a structured context block
+Build structured context block
 
 Provide context + question to Gemini
 
-Display model answer + exact sources
+Display grounded answer + exact sources
 
 📊 Evaluation
 
-The system was evaluated on 30 diverse medical questions, covering:
+The system was evaluated on 30 diverse medical queries, including:
 
 Pneumonia
 
@@ -126,69 +123,69 @@ Stroke
 
 Sepsis
 
-Renal failure
-
 Postoperative complications
 
-Discharge instructions
+Renal failure
 
-And more...
+Discharge planning
+
+And more…
 
 Evaluation Metrics
 
 Context retrieval accuracy
 
-Grounded reasoning
+Groundedness
 
 Source diversity
 
-Safe refusal on insufficient evidence
+Safe refusal behavior
 
-Key Findings
+Findings
 
-Strong retrieval performance
+Retrieval quality is consistently high
 
-Minimal hallucination due to strict prompting
+The model avoids hallucination due to strict prompting
 
-Clear, structured responses
+Answers are structured and transparent
 
-Consistent attribution of sources
+Sources are always attached
 
-Full evaluation is available in:
+Full evaluation results:
 
 rag_eval_results.csv
 
 🚨 Disclaimer
 
-This system is strictly for:
-
-Educational use
+This system is intended only for:
 
 Research
 
+Education
+
 Demonstration
 
-It is not a medical device.
-Do not use it for diagnosis, treatment, or any real clinical decisions.
+This is NOT a medical device.
+Do NOT use it for diagnosis, treatment, or clinical decisions of any kind.
 
 👨‍💻 Technologies Used
 
 Python 3
 
+Streamlit
+
+LangChain Community
+
 Sentence Transformers
 
 FAISS
 
-LangChain Community
-
 Google Gemini 2.5 Flash
 
-Streamlit
-
-Pandas / NumPy
+NumPy / Pandas
 
 Kaggle Notebook Environment
 
 📬 Contact
 
-For discussions, feature suggestions, or collaborations, please open an issue in the repository.
+For discussions, feature suggestions, or collaborations, please create an issue in the repository.
