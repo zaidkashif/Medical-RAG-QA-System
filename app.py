@@ -148,14 +148,25 @@ def main():
     )
 
     # Disclaimer
-    st.markdown(
-        """<div style="background-color:#fff3cd;padding:10px;border-radius:6px;border:1px solid #ffeeba;">
+st.markdown(
+    """
+    <div style="
+        background-color:#f6f6f6;
+        padding:14px;
+        border-radius:8px;
+        border:1px solid #dcdcdc;
+        color:#333333;
+        font-size:15px;
+        line-height:1.5;
+    ">
         <strong>Disclaimer:</strong> This application is for educational and demonstration purposes only.
         It is <strong>not</strong> a substitute for professional medical advice, diagnosis, or treatment.
         Do not use this system to make real clinical decisions.
-        </div>""",
-        unsafe_allow_html=True,
-    )
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 
     st.markdown("---")
 
