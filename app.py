@@ -148,7 +148,7 @@ def main():
     )
 
     # Disclaimer
-st.markdown(
+    st.markdown(
     """
     <div style="
         background-color:#f6f6f6;
@@ -165,7 +165,7 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True,
-)
+    )
 
 
     st.markdown("---")
