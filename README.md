@@ -1,12 +1,10 @@
-**Medical RAG QA System
-
-Retrieval-Augmented Generation over Medical Transcription Reports**
-
+🩺 Medical RAG QA System
+Retrieval-Augmented Generation over Medical Transcription Reports
 🚀 Overview
 
 The Medical RAG QA System is a retrieval-augmented question-answering application designed to provide evidence-grounded responses from a collection of 5,000+ real-world medical transcription reports.
 
-The system uses:
+It combines powerful modern components:
 
 MiniLM Sentence Embeddings
 
@@ -14,38 +12,38 @@ FAISS Similarity Search
 
 Google Gemini 2.5 Flash
 
-Streamlit (for a clean, interactive UI)
+Streamlit Web Interface
 
 LangChain Community Components
 
-Together, they form a lightweight yet powerful RAG pipeline that allows users to explore medical narratives in a controlled, safe, and explainable manner.
+Together, these create a lightweight yet robust RAG pipeline that enables users to explore medical narratives in a controlled, transparent, and explainable manner.
 
-This project does not attempt to replace medical expertise — instead, it demonstrates how modern retrieval-enhanced LLMs can be paired with domain-specific datasets to surface relevant medical insights responsibly.
+This project is not intended to replace medical expertise—it is a demonstration of how retrieval-enhanced LLMs can support knowledge exploration responsibly.
 
 🧠 Key Features
 1. Retrieval-Augmented Generation (RAG)
 
-Queries are answered using only the retrieved evidence from the FAISS vector store, ensuring transparency and grounding.
+Answers are grounded in retrieved evidence, reducing hallucinations.
 
 2. High-Performance Embeddings
 
-Uses sentence-transformers/all-MiniLM-L6-v2 to convert medical text into dense vectors.
+Uses sentence-transformers/all-MiniLM-L6-v2 for efficient 384-dimensional embeddings.
 
 3. FAISS Vector Indexing
 
-FAISS enables fast, scalable similarity search across thousands of medical records.
+Provides fast similarity search across thousands of medical chunks.
 
 4. Gemini-Powered Answers
 
-Gemini 2.5 Flash is used for generation, with strict prompting to avoid hallucination.
+Gemini 2.5 Flash generates explanations constrained by retrieved context.
 
-5. Interactive Web App
+5. Interactive Streamlit Web App
 
-Built with Streamlit and deployed via Streamlit Community Cloud.
+User-friendly interface with clean UX and live querying.
 
 6. Transparent Source Attribution
 
-Every answer includes a list of source documents used for reasoning.
+Every answer cites the exact medical chunks used.
 
 🔍 System Architecture
           ┌────────────────────────────────────────┐
@@ -68,48 +66,55 @@ Every answer includes a list of source documents used for reasoning.
                └────────────────────────┘
                            │
                            ▼
-              ┌──────────────────────────┐
-              │  Evidence-Backed Answer   │
-              └──────────────────────────┘
+              ┌────────────────────────────┐
+              │   Evidence-Backed Answer    │
+              └────────────────────────────┘
 
 🌐 Live Demo
 
-Streamlit App: https://medical-rag-app-systemgit-asvs2mfkqpo9vp6yuguptq.streamlit.app/
+Streamlit App:
+https://medical-rag-app-systemgit-asvs2mfkqpo9vp6yuguptq.streamlit.app/
 
 🛠️ How It Works (Deep Dive)
 1. Document Preparation
 
-Extracted medical transcription reports
+Medical transcription reports loaded from dataset
 
-Cleaned text
+Text cleaning and normalization
 
-Split using RecursiveCharacterTextSplitter for optimal chunk size
+Chunking using RecursiveCharacterTextSplitter
 
-2. Embedding
+2. Embeddings
 
-MiniLM (all-MiniLM-L6-v2) encodes each chunk into a 384-dimensional vector.
+MiniLM (all-MiniLM-L6-v2)
 
-3. Vector Store
+384-dimensional dense vectors
 
-FAISS stores vectors efficiently and supports high-speed nearest-neighbor search.
+Optimized for semantic similarity tasks
 
-4. RAG Retrieval
+3. Vector Store (FAISS)
 
-For every user query:
+Stores embeddings in an efficient index
 
-Convert query to vector
+Enables instant retrieval of nearest neighbors
 
-Retrieve Top-k most relevant chunks
+4. RAG Retrieval Pipeline
 
-Format them into a context block
+For every user question:
 
-Feed to Gemini with a grounding-aware prompt
+Encode the query into an embedding
 
-Display answer + source documents
+Retrieve top-k relevant chunks
+
+Build a structured context block
+
+Provide context + question to Gemini
+
+Display model answer + exact sources
 
 📊 Evaluation
 
-RAG system was evaluated over 30 diverse medical questions, covering:
+The system was evaluated on 30 diverse medical questions, covering:
 
 Pneumonia
 
@@ -123,52 +128,62 @@ Sepsis
 
 Renal failure
 
-Discharge instructions
-
 Postoperative complications
 
-Evaluation metrics included:
+Discharge instructions
 
-Context retrieval success
+And more...
 
-Answer groundedness
+Evaluation Metrics
+
+Context retrieval accuracy
+
+Grounded reasoning
 
 Source diversity
 
-Model refusal for insufficient evidence
+Safe refusal on insufficient evidence
 
-Results show that the system:
+Key Findings
 
-Retrieves highly relevant chunks consistently
+Strong retrieval performance
 
-Avoids hallucinations due to strict context-only prompting
+Minimal hallucination due to strict prompting
 
-Returns professional, structured answers
+Clear, structured responses
 
-The full evaluation is available in:
+Consistent attribution of sources
+
+Full evaluation is available in:
 
 rag_eval_results.csv
 
-
 🚨 Disclaimer
 
-This system is strictly for educational, research, and demonstration use.
+This system is strictly for:
+
+Educational use
+
+Research
+
+Demonstration
+
 It is not a medical device.
-It must not be used for diagnosis, treatment, or clinical decision-making.
+Do not use it for diagnosis, treatment, or any real clinical decisions.
 
 👨‍💻 Technologies Used
 
 Python 3
 
-Streamlit
-
-LangChain Community
-
 Sentence Transformers
 
 FAISS
 
+LangChain Community
+
 Google Gemini 2.5 Flash
+
+Streamlit
 
 Pandas / NumPy
 
@@ -176,4 +191,4 @@ Kaggle Notebook Environment
 
 📬 Contact
 
-For discussions, collaborations, or academic use, feel free to create an issue in the repo.
+For discussions, feature suggestions, or collaborations, please open an issue in the repository.
