@@ -1,6 +1,6 @@
-Medical RAG QA System
+**Medical RAG QA System
 
-Retrieval-Augmented Generation over Medical Transcription Reports
+Retrieval-Augmented Generation over Medical Transcription Reports**
 
 🚀 Overview
 
