@@ -1,0 +1,7 @@
+sentence-transformers
+langchain-community
+faiss-cpu
+tqdm
+google-genai
+pandas
+numpy
